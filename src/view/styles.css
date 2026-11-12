@@ -1,0 +1,63 @@
+.root {
+  -fx-font-family: "Segoe UI", Arial, sans-serif;
+  -fx-background-color: #f5f7fb;
+}
+
+.login-panel {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #d6deea;
+  -fx-border-radius: 8;
+  -fx-background-radius: 8;
+}
+
+.header {
+  -fx-background-color: #ffffff;
+  -fx-border-color: transparent transparent #d6deea transparent;
+}
+
+.side-panel {
+  -fx-background-color: #ffffff;
+  -fx-border-color: transparent transparent transparent #d6deea;
+  -fx-min-width: 330;
+  -fx-pref-width: 360;
+}
+
+.eyebrow {
+  -fx-text-fill: #3c5f90;
+  -fx-font-size: 12px;
+  -fx-font-weight: 700;
+}
+
+.title {
+  -fx-text-fill: #172033;
+  -fx-font-size: 34px;
+  -fx-font-weight: 700;
+}
+
+.title-small {
+  -fx-text-fill: #172033;
+  -fx-font-size: 24px;
+  -fx-font-weight: 700;
+}
+
+.subtitle {
+  -fx-text-fill: #4a5568;
+  -fx-font-size: 16px;
+}
+
+.section-title {
+  -fx-text-fill: #172033;
+  -fx-font-size: 18px;
+  -fx-font-weight: 700;
+}
+
+.primary-button {
+  -fx-background-color: #2457a6;
+  -fx-text-fill: white;
+  -fx-font-weight: 700;
+}
+
+.status {
+  -fx-text-fill: #4a5568;
+  -fx-font-size: 13px;
+}
