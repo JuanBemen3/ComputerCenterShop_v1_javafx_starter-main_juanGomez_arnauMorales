@@ -43,7 +43,7 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 
 ### M1 · Base JDBC operativa
 
-- [ ] [RA2-ISSUE-01 · Preparar el proyecto JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
+- [X] [RA2-ISSUE-01 · Preparar el proyecto JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
 - [ ] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
 - [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
@@ -65,6 +65,23 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 
 - [ ] [RA2-ISSUE-12 · Documentar la ejecución y la configuración](issues/RA2-ISSUE-12-documentar-execucio-configuracio.md)
 - [ ] [RA2-ISSUE-13 · Preparar la entrega de la práctica](issues/RA2-ISSUE-13-lliurament-practica-integradora.md)
+
+## Registro de trabajo
+
+Creacion del primer proyecto en javaFX, hemos clonado el repositorio started y creado un proyecto en base al repositorio clonado, se han hecho las ramas para cada integrante del equipo junto a una mas para probar los merge y la master que sera la principal para la ajecucion correcta del programa, se ha hecho la creacion del readme y subida al proyecto mediante un commit.
+
+### RA2-ISSUE-01 · RA2-ISSUE-01 - Preparar projecte JDBC local #2
+
+- Estado: comprobado
+- Persona que la ha iniciado: Juan
+- Problema inicial: No ha habido problema, solo de clono el repositorio y se ejecuto en local 
+- Decisión aplicada: Ninguna ya que no hubo problema
+- Cambios realizados: Solo dentro del maven hicimos el update proyec y luego el clean javafx:_run 
+- Prueba realizada: No se han realizado cambios 
+- Evidencia: **[enlace a captura, registro, vídeo breve o apartado del repositorio]**
+- *Commit* o *pull request*: 6a4fca15c44e8395ed2a0ed2981574d271d66d39
+- Explicación individual: Clonamos el repositorio y creamos las ramas, verificamos la ejecuntion correcta hasta el inicio de la issue 2.
+- Uso de IA, si lo ha habido: No se uso ia
 
 ## Registro de trabajo
 
