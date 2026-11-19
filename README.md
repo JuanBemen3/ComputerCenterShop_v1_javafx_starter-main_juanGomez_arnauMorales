@@ -1,4 +1,3 @@
-
 # ComputerCenterShop — práctica integradora RA2
 
 > **Plantilla del equipo.** Copiad este archivo en vuestro repositorio de trabajo y completadlo a medida que avancéis. No incluye soluciones de código: las decisiones, pruebas y explicaciones deben ser vuestras.
@@ -9,8 +8,9 @@
 - Repositorio compartido: (https://github.com/JuanBemen3/ComputerCenterShop_v1_javafx_starter-main_juanGomez_arnauMorales.git)
 - Rama de trabajo habitual: Cada uno tenemos una rama con nuestro nombre, un rama main donde ira el merge y la rama master
 la cual sera la principal ya que ahi se subira despues de comprobar que no haya errores
+
 - Fecha de inicio: 2026-11-17
-- Última actualización: **[AAAA-MM-DD]**
+- Última actualización: 2026-11-19
 
 ## Propósito del proyecto
 
@@ -44,7 +44,7 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 ### M1 · Base JDBC operativa
 
 - [X] [RA2-ISSUE-01 · Preparar el proyecto JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
-- [ ] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
+- [X] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
 - [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
 ### M2 · Operaciones relacionales principales
@@ -74,14 +74,27 @@ Creacion del primer proyecto en javaFX, hemos clonado el repositorio started y c
 
 - Estado: comprobado
 - Persona que la ha iniciado: Juan
-- Problema inicial: No ha habido problema, solo de clono el repositorio y se ejecuto en local 
+- Problema inicial: No ha habido problema, solo de clono el repositorio y se ejecuto en local
 - Decisión aplicada: Ninguna ya que no hubo problema
-- Cambios realizados: Solo dentro del maven hicimos el update proyec y luego el clean javafx:_run 
-- Prueba realizada: No se han realizado cambios 
+- Cambios realizados: Solo dentro del maven hicimos el update proyec y luego el clean javafx:_run
+- Prueba realizada: No se han realizado cambios
 - Evidencia: **[enlace a captura, registro, vídeo breve o apartado del repositorio]**
 - *Commit* o *pull request*: 6a4fca15c44e8395ed2a0ed2981574d271d66d39
 - Explicación individual: Clonamos el repositorio y creamos las ramas, verificamos la ejecuntion correcta hasta el inicio de la issue 2.
 - Uso de IA, si lo ha habido: No se uso ia
+
+### RA2-ISSUE-02 · [Implementar connector, URL i connexio]
+
+- Estat: comprovat
+- Persona que l'ha iniciat: Arnau
+- Problema inicial: No teníem connexió JDBC amb H2
+- Decisió aplicada: Hem implementat DriverManager amb connection "conn"
+- Canvis fets: Hem afegit al fitxer ProductDaoImplJDBC.java a la línia 25 la connexió: conn = DriverManager.getConnection(DEFAULT_DB_URL, DEFAULT_USER, DEFAULT_PASSWORD); hem comentat el throw pending perquè mostri el missatge d'error
+- Prova realitzada: Hem tancat completament el projecte, hem guardat els canvis i, en obrir el projecte de nou, hem premut el botó connectar per veure que no apareix el missatge d'error ISSUE 02
+- Evidència: **[enllaç a captura, registre, vídeo breu o apartat del repositori]**
+- *Commit* o *pull request*: 9448c67 (Commit ISSUE02 completat)
+- Explicació individual: En l'Issue 02 ens assegurem d'implementar correctament el projecte amb el gestor de bases de dades
+- Ús d'IA, si n'hi ha hagut: No ha calgut, la resposta era a la pròpia activitat
 
 ## Registro de trabajo
 
