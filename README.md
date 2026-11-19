@@ -45,7 +45,7 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 
 - [X] [RA2-ISSUE-01 · Preparar el proyecto JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
 - [X] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
-- [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
+- [X] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
 ### M2 · Operaciones relacionales principales
 
@@ -100,18 +100,18 @@ Creacion del primer proyecto en javaFX, hemos clonado el repositorio started y c
 
 Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras propias palabras y enlazad únicamente pruebas y *commits* de vuestro repositorio.
 
-### RA2-ISSUE-XX · [título de la *issue*]
+### RA2-ISSUE-03 · [Implementar estructura relacional]
 
-- Estado: **pendiente | en curso | comprobado**
-- Persona que la ha iniciado: **[nombre]**
-- Problema inicial: **[qué no funcionaba o qué faltaba]**
-- Decisión aplicada: **[qué habéis decidido hacer y por qué]**
-- Cambios realizados: **[archivos o partes del proyecto modificadas]**
-- Prueba realizada: **[caso que habéis probado y resultado observado]**
+- Estado: comprobado
+- Persona que la ha iniciado: Arnau
+- Problema inicial:  Faltava implementar la creació de les taules products i inventory_history a la base de dades H2.
+- Decisión aplicada: Utilitzar Statement i sentències SQL CREATE TABLE IF NOT EXISTS per crear les taules sense eliminar-les si ja existeixen. També afegir els productes inicials amb INSERT INTO.
+- Cambios realizados: S'ha modificat el fitxer src/dao/ProductDaoImplJDBC.java, concretament el mètode initSchema(). S'han afegit les sentències SQL per crear les dues taules i inserir tres productes inicials.
+- Prueba realizada: Hem tancat completament el projecte, hem guardat els canvis i, en obrir el projecte de nou, hem premut el botó connectar per veure que no apareix el missatge d'error ISSUE 03
 - Evidencia: **[enlace a captura, registro, vídeo breve o apartado del repositorio]**
-- *Commit* o *pull request*: **[enlace o identificador]**
-- Explicación individual: **[qué puede explicar cada integrante sobre esta tarea]**
-- Uso de IA, si lo ha habido: **[consulta realizada, ayuda recibida y comprobación propia]**
+- *Commit* o *pull request*:  (Commit ISSUE03 completat)
+- Explicación individual: He creat les taules products i inventory_history amb SQL, utilitzant Statement per executar les consultes i INSERT INTO per afegir els productes inicials.
+- Uso de IA, si lo ha habido: No ha calgut
 
 ## Pruebas que debemos poder repetir
 
