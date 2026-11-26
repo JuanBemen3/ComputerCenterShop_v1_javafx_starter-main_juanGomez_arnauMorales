@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 
 import model.Product;
 
@@ -21,10 +23,12 @@ public class ProductDaoImplJDBC implements ProductDao {
 		String url = System.getProperty("computercenter.db.url", DEFAULT_DB_URL);
 		String user = System.getProperty("computercenter.db.user", DEFAULT_USER);
 		String password = System.getProperty("computercenter.db.password", DEFAULT_PASSWORD);
+		
+		conn = DriverManager.getConnection(DEFAULT_DB_URL, DEFAULT_USER, DEFAULT_PASSWORD);
 
 		// TODO RA2-ISSUE-02: obrir la connexio amb DriverManager i guardar-la a conn.
 		// Pista: usa url, user i password, i comprova com es declara el connector al pom.xml.
-		throw pending("RA2-ISSUE-02 pendent: implementa la connexio JDBC amb DriverManager.");
+		//throw pending("RA2-ISSUE-02 pendent: implementa la connexio JDBC amb DriverManager.");
 	}
 
 	@Override
@@ -38,7 +42,42 @@ public class ProductDaoImplJDBC implements ProductDao {
 	public void initSchema() throws SQLException {
 		// TODO RA2-ISSUE-03: crear products, inventory_history i l'alias STOCK_ALERT_LIMIT.
 		// Pista: resol-ho amb Statement i try-with-resources, i afegeix seed inicial si la taula es buida.
-		throw pending("RA2-ISSUE-03 pendent: implementa DDL i inicialitzacio de l'esquema.");
+		String sqlProducts = """
+		        CREATE TABLE IF NOT EXISTS products (
+		            id IDENTITY PRIMARY KEY,
+		            name VARCHAR(80) NOT NULL UNIQUE,
+		            wholesaler_price DECIMAL(10,2) NOT NULL,
+		            available BOOLEAN NOT NULL,
+		            stock INT NOT NULL
+		        )
+		        """;
+
+		    String sqlHistory = """
+		        CREATE TABLE IF NOT EXISTS inventory_history (
+		            id IDENTITY PRIMARY KEY,
+		            product_id BIGINT NOT NULL,
+		            action VARCHAR(40) NOT NULL,
+		            quantity INT NOT NULL,
+		            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		            FOREIGN KEY (product_id) REFERENCES products(id)
+		        )
+		        """;
+
+		    /*String sqlInsert = """
+		        INSERT INTO products(name, wholesaler_price, available, stock)
+		        VALUES
+		            ('SSD 1TB', 60.00, TRUE, 8),
+		            ('RAM 32GB', 90.50, TRUE, 3),
+		            ('Teclat mecanic', 45.00, TRUE, 6)
+		        """;*/
+
+		    try (Statement stmt = conn.createStatement()) {
+		        stmt.execute(sqlProducts);
+		        stmt.execute(sqlHistory);
+		        //stmt.execute(sqlInsert);
+		    }
+	            
+		//throw pending("RA2-ISSUE-03 pendent: implementa DDL i inicialitzacio de l'esquema.");
 	}
 
 	@Override
@@ -56,19 +95,53 @@ public class ProductDaoImplJDBC implements ProductDao {
 	@Override
 	public int insertProduct(Product product) throws SQLException {
 		// TODO RA2-ISSUE-04: inserir name, wholesaler_price, available i stock amb PreparedStatement.
-		throw pending("RA2-ISSUE-04 pendent: implementa insercio amb PreparedStatement.");
+		String sql = "INSERT INTO products (name, wholesaler_price, available, stock) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement ps = requireConnection().prepareStatement(sql)) {
+	        ps.setString(1, product.getName());
+	        ps.setDouble(2, product.getWholesalerPrice().getValue());
+	        ps.setBoolean(3, product.isAvailable());
+	        ps.setInt(4, product.getStock());
+
+	        return ps.executeUpdate();
+	    }
+		//throw pending("RA2-ISSUE-04 pendent: implementa insercio amb PreparedStatement.");
 	}
 
 	@Override
 	public int updateStock(String name, int newStock) throws SQLException {
 		// TODO RA2-ISSUE-05: actualitzar stock i available segons newStock amb PreparedStatement.
-		throw pending("RA2-ISSUE-05 pendent: implementa actualitzacio d'estoc.");
+		String sql = "UPDATE products SET stock = ?, available = ? WHERE name = ?";
+
+	    try (PreparedStatement ps = requireConnection().prepareStatement(sql)) {
+	        ps.setInt(1, newStock);
+	        ps.setBoolean(2, newStock > 0);
+	        ps.setString(3, name);
+
+	        return ps.executeUpdate();
+	    }
+		//throw pending("RA2-ISSUE-05 pendent: implementa actualitzacio d'estoc.");
 	}
 
 	@Override
 	public int deleteProduct(String name) throws SQLException {
 		// TODO RA2-ISSUE-06: eliminar per nom i comprovar files afectades.
-		throw pending("RA2-ISSUE-06 pendent: implementa eliminacio controlada.");
+		String sql = "DELETE FROM products WHERE name = ?";
+
+	    try (PreparedStatement ps = requireConnection().prepareStatement(sql)) {
+	        ps.setString(1, name);
+
+	        return ps.executeUpdate();
+
+	    } catch (SQLException e) {
+	        if ("23503".equals(e.getSQLState())) {
+	            throw new SQLException(
+	                "No es pot eliminar el producte perquè té historial associat.", e);
+	        }
+
+	        throw e;
+	    }
+		//throw pending("RA2-ISSUE-06 pendent: implementa eliminacio controlada.");
 	}
 
 	@Override
