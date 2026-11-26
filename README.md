@@ -126,6 +126,19 @@ Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras pr
 - Explicación individual: He utilitzat PreparedStatement per inserir productes sense concatenar els valors a la sentència SQL i retornar el nombre de files afectades.
 - Uso de IA, si lo ha habido: Hem utilitzat ChatGPT com a suport per implementar el mètode i preparar la comprovació amb H2 Shell.
 
+### RA2-ISSUE-05 · [Actualitzar estoc amb PreparedStatement]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau
+- Problema inicial: Faltava implementar l'actualització de l'estoc i la disponibilitat dels productes.
+- Decisión aplicada: Utilitzar PreparedStatement amb una sentència UPDATE per modificar l'estoc i la disponibilitat segons el nom del producte.
+- Cambios realizados: S'ha implementat el mètode updateStock() del fitxer ProductDaoImplJDBC.java. Si l'estoc és superior a zero, la disponibilitat és true; en cas contrari, és false.
+- Prueba realizada: Hem utilitzat la interfície gràfica per modificar l'estoc i H2 Shell per consultar les dades del producte abans i després de l'actualització.
+- Evidencia: **[captura](capturas_issues/issue5.png)**
+- *Commit* o *pull request*: (Commit ISSUE05 completat)
+- Explicación individual: He utilitzat una sentència UPDATE amb paràmetres per actualitzar l'estoc i la disponibilitat. El mètode executeUpdate() retorna el nombre de files afectades.
+- Uso de IA, si lo ha habido: No ha calgut.
+
 ## Pruebas que debemos poder repetir
 
 | Caso que comprobamos | Datos o condiciones iniciales | Resultado observado | Evidencia |
