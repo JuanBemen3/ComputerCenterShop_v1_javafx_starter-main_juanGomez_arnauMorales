@@ -23,7 +23,7 @@
     </VBox>
   </top>
   <center>
-    <TableView fx:id="inventoryTable" columnResizePolicy="CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN">
+    <TableView fx:id="inventoryTable">
       <columns>
         <TableColumn fx:id="idColumn" prefWidth="70.0" text="ID" />
         <TableColumn fx:id="nameColumn" prefWidth="300.0" text="Producte" />

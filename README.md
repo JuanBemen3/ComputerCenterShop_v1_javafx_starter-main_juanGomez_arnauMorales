@@ -1,4 +1,3 @@
-
 # ComputerCenterShop — práctica integradora RA2
 
 > **Plantilla del equipo.** Copiad este archivo en vuestro repositorio de trabajo y completadlo a medida que avancéis. No incluye soluciones de código: las decisiones, pruebas y explicaciones deben ser vuestras.
@@ -9,8 +8,9 @@
 - Repositorio compartido: (https://github.com/JuanBemen3/ComputerCenterShop_v1_javafx_starter-main_juanGomez_arnauMorales.git)
 - Rama de trabajo habitual: Cada uno tenemos una rama con nuestro nombre, un rama main donde ira el merge y la rama master
 la cual sera la principal ya que ahi se subira despues de comprobar que no haya errores
+
 - Fecha de inicio: 2026-11-17
-- Última actualización: **[AAAA-MM-DD]**
+- Última actualización: 2026-11-19
 
 ## Propósito del proyecto
 
@@ -44,14 +44,14 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 ### M1 · Base JDBC operativa
 
 - [X] [RA2-ISSUE-01 · Preparar el proyecto JDBC](issues/RA2-ISSUE-01-preparar-projecte-jdbc.md)
-- [ ] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
-- [ ] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
+- [X] [RA2-ISSUE-02 · Conector, URL y conexión](issues/RA2-ISSUE-02-revisar-connector-url-connexio.md)
+- [X] [RA2-ISSUE-03 · Estructura relacional](issues/RA2-ISSUE-03-crear-estructura-relacional.md)
 
 ### M2 · Operaciones relacionales principales
 
-- [ ] [RA2-ISSUE-04 · Inserción de datos](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
-- [ ] [RA2-ISSUE-05 · Actualización de stock](issues/RA2-ISSUE-05-actualitzar-estoc.md)
-- [ ] [RA2-ISSUE-06 · Eliminación controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
+- [X] [RA2-ISSUE-04 · Inserción de datos](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
+- [X] [RA2-ISSUE-05 · Actualización de stock](issues/RA2-ISSUE-05-actualitzar-estoc.md)
+- [X] [RA2-ISSUE-06 · Eliminación controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
 - [ ] [RA2-ISSUE-07 · Consultas y resultados](issues/RA2-ISSUE-07-consultar-inventari-resultset.md)
 
 ### M3 · Robustez JDBC
@@ -74,31 +74,81 @@ Creacion del primer proyecto en javaFX, hemos clonado el repositorio started y c
 
 - Estado: comprobado
 - Persona que la ha iniciado: Juan
-- Problema inicial: No ha habido problema, solo de clono el repositorio y se ejecuto en local 
+- Problema inicial: No ha habido problema, solo de clono el repositorio y se ejecuto en local
 - Decisión aplicada: Ninguna ya que no hubo problema
-- Cambios realizados: Solo dentro del maven hicimos el update proyec y luego el clean javafx:_run 
-- Prueba realizada: No se han realizado cambios 
+- Cambios realizados: Solo dentro del maven hicimos el update proyec y luego el clean javafx:_run
+- Prueba realizada: No se han realizado cambios
 - Evidencia: **[enlace a captura, registro, vídeo breve o apartado del repositorio]**
 - *Commit* o *pull request*: 6a4fca15c44e8395ed2a0ed2981574d271d66d39
 - Explicación individual: Clonamos el repositorio y creamos las ramas, verificamos la ejecuntion correcta hasta el inicio de la issue 2.
 - Uso de IA, si lo ha habido: No se uso ia
 
+### RA2-ISSUE-02 · [Implementar connector, URL i connexio]
+
+- Estat: comprovat
+- Persona que l'ha iniciat: Arnau
+- Problema inicial: No teníem connexió JDBC amb H2
+- Decisió aplicada: Hem implementat DriverManager amb connection "conn"
+- Canvis fets: Hem afegit al fitxer ProductDaoImplJDBC.java a la línia 25 la connexió: conn = DriverManager.getConnection(DEFAULT_DB_URL, DEFAULT_USER, DEFAULT_PASSWORD); hem comentat el throw pending perquè mostri el missatge d'error
+- Prova realitzada: Hem tancat completament el projecte, hem guardat els canvis i, en obrir el projecte de nou, hem premut el botó connectar per veure que no apareix el missatge d'error ISSUE 02
+- Evidència: **[enllaç a captura, registre, vídeo breu o apartat del repositori]**
+- *Commit* o *pull request*: 9448c67 (Commit ISSUE02 completat)
+- Explicació individual: En l'Issue 02 ens assegurem d'implementar correctament el projecte amb el gestor de bases de dades
+- Ús d'IA, si n'hi ha hagut: No ha calgut, la resposta era a la pròpia activitat
+
 ## Registro de trabajo
 
 Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras propias palabras y enlazad únicamente pruebas y *commits* de vuestro repositorio.
 
-### RA2-ISSUE-XX · [título de la *issue*]
+### RA2-ISSUE-03 · [Implementar estructura relacional]
 
-- Estado: **pendiente | en curso | comprobado**
-- Persona que la ha iniciado: **[nombre]**
-- Problema inicial: **[qué no funcionaba o qué faltaba]**
-- Decisión aplicada: **[qué habéis decidido hacer y por qué]**
-- Cambios realizados: **[archivos o partes del proyecto modificadas]**
-- Prueba realizada: **[caso que habéis probado y resultado observado]**
+- Estado: comprobado
+- Persona que la ha iniciado: Arnau
+- Problema inicial:  Faltava implementar la creació de les taules products i inventory_history a la base de dades H2.
+- Decisión aplicada: Utilitzar Statement i sentències SQL CREATE TABLE IF NOT EXISTS per crear les taules sense eliminar-les si ja existeixen. També afegir els productes inicials amb INSERT INTO.
+- Cambios realizados: S'ha modificat el fitxer src/dao/ProductDaoImplJDBC.java, concretament el mètode initSchema(). S'han afegit les sentències SQL per crear les dues taules i inserir tres productes inicials.
+- Prueba realizada: Hem tancat completament el projecte, hem guardat els canvis i, en obrir el projecte de nou, hem premut el botó connectar per veure que no apareix el missatge d'error ISSUE 03
 - Evidencia: **[enlace a captura, registro, vídeo breve o apartado del repositorio]**
-- *Commit* o *pull request*: **[enlace o identificador]**
-- Explicación individual: **[qué puede explicar cada integrante sobre esta tarea]**
-- Uso de IA, si lo ha habido: **[consulta realizada, ayuda recibida y comprobación propia]**
+- *Commit* o *pull request*:  (Commit ISSUE03 completat)
+- Explicación individual: He creat les taules products i inventory_history amb SQL, utilitzant Statement per executar les consultes i INSERT INTO per afegir els productes inicials.
+- Uso de IA, si lo ha habido: No ha calgut
+
+### RA2-ISSUE-04 · [Implementar insercio amb PreparedStatement]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau
+- Problema inicial: Faltava implementar la inserció de productes a la base de dades H2.
+- Decisión aplicada: Utilitzar PreparedStatement per inserir les dades del producte mitjançant paràmetres.
+- Cambios realizados: S'ha implementat el mètode insertProduct() del fitxer ProductDaoImplJDBC.java i s'ha utilitzat executeUpdate() per retornar el nombre de files afectades.
+- Prueba realizada: Hem inserit un producte des de la interfície gràfica i l'aplicació ha mostrat el missatge "Producte inserit".
+- Evidencia: **[captura](capturas_issues/issue4.png)**
+- *Commit* o *pull request*: (Commit ISSUE04 completat)
+- Explicación individual: He utilitzat PreparedStatement per inserir productes sense concatenar els valors a la sentència SQL i retornar el nombre de files afectades.
+- Uso de IA, si lo ha habido: Hem utilitzat ChatGPT com a suport per implementar el mètode i preparar la comprovació amb H2 Shell.
+
+### RA2-ISSUE-05 · [Implementar actualitzacio d'estoc]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau
+- Problema inicial: Faltava implementar l'actualització de l'estoc i la disponibilitat dels productes.
+- Decisión aplicada: Utilitzar PreparedStatement amb una sentència UPDATE per modificar l'estoc i la disponibilitat segons el nom del producte.
+- Cambios realizados: S'ha implementat el mètode updateStock() del fitxer ProductDaoImplJDBC.java. Si l'estoc és superior a zero, la disponibilitat és true; en cas contrari, és false.
+- Prueba realizada: Hem utilitzat la interfície gràfica per modificar l'estoc i H2 Shell per consultar les dades del producte abans i després de l'actualització.
+- Evidencia: **[captura](capturas_issues/issue5.png)**
+- *Commit* o *pull request*: (Commit ISSUE05 completat)
+- Explicación individual: He utilitzat una sentència UPDATE amb paràmetres per actualitzar l'estoc i la disponibilitat. El mètode executeUpdate() retorna el nombre de files afectades.
+- Uso de IA, si lo ha habido: No ha calgut.
+
+### RA2-ISSUE-06 · [Implementar eliminacio controlada]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau.
+- Problema inicial: Faltava implementar l'eliminació de productes per nom i gestionar els productes amb historial associat.
+- Decisión aplicada: Utilitzar PreparedStatement amb una sentència DELETE i gestionar l'error de restricció referencial amb SQLState.
+- Cambios realizados: S'ha implementat el mètode deleteProduct() del fitxer ProductDaoImplJDBC.java.
+- Prueba realizada: Hem afegit un registre d'historial de prova al producte SSD 1TB i hem comprovat que l'aplicació impedeix eliminar-lo.
+- Explicación individual: He utilitzat DELETE amb un paràmetre per eliminar el producte pel nom i executeUpdate() per retornar les files afectades.
+- Uso de IA: Hem utilitzat ChatGPT per veure com implementar un historial a un producte.
 
 ## Pruebas que debemos poder repetir
 
