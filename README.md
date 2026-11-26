@@ -50,8 +50,8 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 ### M2 · Operaciones relacionales principales
 
 - [X] [RA2-ISSUE-04 · Inserción de datos](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
-- [ ] [RA2-ISSUE-05 · Actualización de stock](issues/RA2-ISSUE-05-actualitzar-estoc.md)
-- [ ] [RA2-ISSUE-06 · Eliminación controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
+- [X] [RA2-ISSUE-05 · Actualización de stock](issues/RA2-ISSUE-05-actualitzar-estoc.md)
+- [X] [RA2-ISSUE-06 · Eliminación controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
 - [ ] [RA2-ISSUE-07 · Consultas y resultados](issues/RA2-ISSUE-07-consultar-inventari-resultset.md)
 
 ### M3 · Robustez JDBC
@@ -113,7 +113,7 @@ Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras pr
 - Explicación individual: He creat les taules products i inventory_history amb SQL, utilitzant Statement per executar les consultes i INSERT INTO per afegir els productes inicials.
 - Uso de IA, si lo ha habido: No ha calgut
 
-### RA2-ISSUE-04 · [Inserir producte amb PreparedStatement]
+### RA2-ISSUE-04 · [Implementar insercio amb PreparedStatement]
 
 - Estado: comprobado.
 - Persona que la ha iniciado: Arnau
@@ -126,7 +126,7 @@ Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras pr
 - Explicación individual: He utilitzat PreparedStatement per inserir productes sense concatenar els valors a la sentència SQL i retornar el nombre de files afectades.
 - Uso de IA, si lo ha habido: Hem utilitzat ChatGPT com a suport per implementar el mètode i preparar la comprovació amb H2 Shell.
 
-### RA2-ISSUE-05 · [Actualitzar estoc amb PreparedStatement]
+### RA2-ISSUE-05 · [Implementar actualitzacio d'estoc]
 
 - Estado: comprobado.
 - Persona que la ha iniciado: Arnau
@@ -138,6 +138,17 @@ Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras pr
 - *Commit* o *pull request*: (Commit ISSUE05 completat)
 - Explicación individual: He utilitzat una sentència UPDATE amb paràmetres per actualitzar l'estoc i la disponibilitat. El mètode executeUpdate() retorna el nombre de files afectades.
 - Uso de IA, si lo ha habido: No ha calgut.
+
+### RA2-ISSUE-06 · [Implementar eliminacio controlada]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau.
+- Problema inicial: Faltava implementar l'eliminació de productes per nom i gestionar els productes amb historial associat.
+- Decisión aplicada: Utilitzar PreparedStatement amb una sentència DELETE i gestionar l'error de restricció referencial amb SQLState.
+- Cambios realizados: S'ha implementat el mètode deleteProduct() del fitxer ProductDaoImplJDBC.java.
+- Prueba realizada: Hem afegit un registre d'historial de prova al producte SSD 1TB i hem comprovat que l'aplicació impedeix eliminar-lo.
+- Explicación individual: He utilitzat DELETE amb un paràmetre per eliminar el producte pel nom i executeUpdate() per retornar les files afectades.
+- Uso de IA: Hem utilitzat ChatGPT per veure com implementar un historial a un producte.
 
 ## Pruebas que debemos poder repetir
 
