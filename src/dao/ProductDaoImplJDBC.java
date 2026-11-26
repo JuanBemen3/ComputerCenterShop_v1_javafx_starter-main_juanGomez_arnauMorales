@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 
 import model.Product;
 
@@ -62,13 +63,13 @@ public class ProductDaoImplJDBC implements ProductDao {
 		        )
 		        """;
 
-		    String sqlInsert = """
+		    /*String sqlInsert = """
 		        INSERT INTO products(name, wholesaler_price, available, stock)
 		        VALUES
 		            ('SSD 1TB', 60.00, TRUE, 8),
 		            ('RAM 32GB', 90.50, TRUE, 3),
 		            ('Teclat mecanic', 45.00, TRUE, 6)
-		        """;
+		        """;*/
 
 		    try (Statement stmt = conn.createStatement()) {
 		        stmt.execute(sqlProducts);
@@ -94,7 +95,17 @@ public class ProductDaoImplJDBC implements ProductDao {
 	@Override
 	public int insertProduct(Product product) throws SQLException {
 		// TODO RA2-ISSUE-04: inserir name, wholesaler_price, available i stock amb PreparedStatement.
-		throw pending("RA2-ISSUE-04 pendent: implementa insercio amb PreparedStatement.");
+		String sql = "INSERT INTO products (name, wholesaler_price, available, stock) VALUES (?, ?, ?, ?)";
+
+	    try (PreparedStatement ps = requireConnection().prepareStatement(sql)) {
+	        ps.setString(1, product.getName());
+	        ps.setDouble(2, product.getWholesalerPrice().getValue());
+	        ps.setBoolean(3, product.isAvailable());
+	        ps.setInt(4, product.getStock());
+
+	        return ps.executeUpdate();
+	    }
+		//throw pending("RA2-ISSUE-04 pendent: implementa insercio amb PreparedStatement.");
 	}
 
 	@Override

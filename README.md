@@ -49,7 +49,7 @@ Marcamos una tarea cuando la prueba y el rastro en el repositorio estén recogid
 
 ### M2 · Operaciones relacionales principales
 
-- [ ] [RA2-ISSUE-04 · Inserción de datos](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
+- [X] [RA2-ISSUE-04 · Inserción de datos](issues/RA2-ISSUE-04-inserir-producte-preparedstatement.md)
 - [ ] [RA2-ISSUE-05 · Actualización de stock](issues/RA2-ISSUE-05-actualitzar-estoc.md)
 - [ ] [RA2-ISSUE-06 · Eliminación controlada](issues/RA2-ISSUE-06-eliminar-producte-controlat.md)
 - [ ] [RA2-ISSUE-07 · Consultas y resultados](issues/RA2-ISSUE-07-consultar-inventari-resultset.md)
@@ -112,6 +112,19 @@ Duplicad este bloque para cada *issue* que completéis. Escribid con vuestras pr
 - *Commit* o *pull request*:  (Commit ISSUE03 completat)
 - Explicación individual: He creat les taules products i inventory_history amb SQL, utilitzant Statement per executar les consultes i INSERT INTO per afegir els productes inicials.
 - Uso de IA, si lo ha habido: No ha calgut
+
+### RA2-ISSUE-04 · [Inserir producte amb PreparedStatement]
+
+- Estado: comprobado.
+- Persona que la ha iniciado: Arnau
+- Problema inicial: Faltava implementar la inserció de productes a la base de dades H2.
+- Decisión aplicada: Utilitzar PreparedStatement per inserir les dades del producte mitjançant paràmetres.
+- Cambios realizados: S'ha implementat el mètode insertProduct() del fitxer ProductDaoImplJDBC.java i s'ha utilitzat executeUpdate() per retornar el nombre de files afectades.
+- Prueba realizada: Hem inserit un producte des de la interfície gràfica i l'aplicació ha mostrat el missatge "Producte inserit".
+- Evidencia: **[captura](capturas_issues/issue4.png)**
+- *Commit* o *pull request*: (Commit ISSUE04 completat)
+- Explicación individual: He utilitzat PreparedStatement per inserir productes sense concatenar els valors a la sentència SQL i retornar el nombre de files afectades.
+- Uso de IA, si lo ha habido: Hem utilitzat ChatGPT com a suport per implementar el mètode i preparar la comprovació amb H2 Shell.
 
 ## Pruebas que debemos poder repetir
 
